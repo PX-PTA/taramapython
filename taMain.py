@@ -152,7 +152,7 @@ while True:
                         f.close()
                         if(jsonText != None):
                             dataScan = json.loads(jsonText)       
-                            sendScanFace(dataScan["user"]["email"],dataScan["user"]["time"]);                     
+                            sendScanFace(dataScan["user"]["email"],dataScan["scanTime"]);                     
                             print("[Info] Send Scan to Database ")
                     else:
                         print('[INFO] Scanning')
