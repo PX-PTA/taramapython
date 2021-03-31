@@ -155,7 +155,7 @@ while True:
                             isSuccess = sendScanFace(dataScan["user"]["email"],dataScan["scanTime"]);                     
                             print("[Info] Send Scan to Database ")
                             if(isSuccess != None):                                                         
-                                with open('addFaceDone.txt', 'w') as f:
+                                with open('scanFaceDone.txt', 'w') as f:
                                     f.write(' ')
                     else:
                         print('[INFO] Scanning')
