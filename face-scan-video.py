@@ -77,7 +77,7 @@ def scanFace():
                 json_data = json.dumps(dataScan)
                 with open('scanFaceDone.txt', 'w') as outfile:
                     json.dump(dataScan, outfile)
-                if(scanTimes > 5):
+                if(scanTimes > 3):
                     return
                 else:
                     scanTimes = scanTimes+1
