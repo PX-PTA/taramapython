@@ -150,18 +150,21 @@ while True:
                         f = open("scanFaceDone.txt", "r")
                         jsonText = f.read()
                         f.close()
-                        if(jsonText != None):
+                        if(jsonText != " "):
                             dataScan = json.loads(jsonText)       
                             isSuccess = sendScanFace(dataScan["user"]["email"],dataScan["scanTime"]);                     
                             print("[Info] Send Scan to Database ")
                             if(isSuccess != None):                                                         
                                 with open('scanFaceDone.txt', 'w') as f:
                                     f.write(' ')
+                        else:
+                            print('[INFO] Scanning')
+                            dataScanFace = getScanFace()
+                            if(dataScanFace != None):                        
+                                scanFace(dataScanFace["user"]["email"])
                     else:
-                        print('[INFO] Scanning')
-                        dataScanFace = getScanFace()
-                        if(dataScanFace != None):                        
-                            scanFace(dataScanFace["user"]["email"])
+                        with open('scanFaceDone.txt', 'w') as f:
+                            f.write(' ')
                 else:                
                     if(deviceData['is_add_face'] != 0):   
                         print('[INFO] Add Face')
