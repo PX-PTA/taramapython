@@ -152,8 +152,11 @@ while True:
                         f.close()
                         if(jsonText != None):
                             dataScan = json.loads(jsonText)       
-                            sendScanFace(dataScan["user"]["email"],dataScan["scanTime"]);                     
+                            isSuccess = sendScanFace(dataScan["user"]["email"],dataScan["scanTime"]);                     
                             print("[Info] Send Scan to Database ")
+                            if(isSuccess != None)                                                         
+                                with open('addFaceDone.txt', 'w') as f:
+                                    f.write(' ')
                     else:
                         print('[INFO] Scanning')
                         dataScanFace = getScanFace()
