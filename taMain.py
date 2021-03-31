@@ -151,7 +151,7 @@ while True:
                         jsonText = f.read()
                         f.close()
                         if(jsonText != None):       
-                            sendScanFace(dataScanFace["user"]["email"]);                     
+                            sendScanFace(jsonText["user"]["email"]);                     
                             print("[Info] Send Scan to Database ")
                     else:
                         print('[INFO] Scanning')
