@@ -61,7 +61,7 @@ def readAddedFace():
             if(jsonText != None):
                 jsonData = json.loads(jsonText)
                 if(jsonData["isDone"] == True):
-                    returnAddFace(jsonData["user"]["id"])                   
+                    returnAddFace(jsonData["user"]["email"])                   
                 with open('addFaceDone.txt', 'w') as f:
                    f.write(' ')
                 time.sleep(5)
@@ -120,6 +120,14 @@ def returnAddFace(userId):
     else:
         return 
     
+def sendScanFace():
+    myobj = {'userId': userId,}
+    r = requests.post('http://tarama.primexaviers.com/api/device/1/scan',data = myobj)
+    if(r.status_code == 200):
+        return r.json()
+    else:
+        return
+
 # loop dari semua frame yang di dapat
 while True:
     if(checkInternetHttplib == False):        
@@ -142,7 +150,8 @@ while True:
                         f = open("scanFaceDone.txt", "r")
                         jsonText = f.read()
                         f.close()
-                        if(jsonText != None):                            
+                        if(jsonText != None):       
+                            sendScanFace(dataScanFace["user"]["email"]);                     
                             print("[Info] Send Scan to Database ")
                     else:
                         print('[INFO] Scanning')
