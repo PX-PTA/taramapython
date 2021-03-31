@@ -120,8 +120,8 @@ def returnAddFace(userId):
     else:
         return 
     
-def sendScanFace():
-    myobj = {'userId': userId,}
+def sendScanFace(userId,time):
+    myobj = {'userId': userId,'time': time}
     r = requests.post('http://tarama.primexaviers.com/api/device/1/scan',data = myobj)
     if(r.status_code == 200):
         return r.json()
@@ -152,7 +152,7 @@ while True:
                         f.close()
                         if(jsonText != None):
                             dataScan = json.loads(jsonText)       
-                            sendScanFace(dataScan["user"]["email"]);                     
+                            sendScanFace(dataScan["user"]["email"],dataScan["user"]["time"]);                     
                             print("[Info] Send Scan to Database ")
                     else:
                         print('[INFO] Scanning')
